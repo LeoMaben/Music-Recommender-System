@@ -30,7 +30,7 @@ def read_json(file_path):
     try:
         file = open(file_path)
         data = json.load(file)
-        folder_path = 'processed_files'
+        folder_path = '../processed_files'
 
         playlists = data['playlists']
         i = 0
