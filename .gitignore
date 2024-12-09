@@ -1,3 +1,5 @@
 million_dataset/
 processed_files/
 .DS_Store
+Preprocessing/SpotifyCredentials.py
+Preprocessing/.cache

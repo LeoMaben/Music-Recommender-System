@@ -60,9 +60,40 @@ def read_json(file_path):
         print(f"Following error got triggered: {e}")
 
 
+
+def reconstruct_data(file_path, output_path):
+    start = 0
+    end = 1000
+
+
+    while end != 11000:
+        path = file_path + 'mpd.slice.' + str(start) + '-' + str(end - 1) + '.json'
+        data = json.load(open(path))
+        song_array = []
+        for playlist in data['playlists']:
+            pid = playlist['pid']
+            for tracks in playlist['tracks']:
+
+                artist_name = tracks['artist_name']
+                track_uri = tracks['track_uri']
+                track_name = tracks["track_name"]
+
+                song_array.append([track_uri, track_name, artist_name, pid])
+
+        song_playlist = pd.DataFrame(song_array, columns=['Track Url', 'Track Name', 'Artist Name', 'Playlist ID'])
+        print("Dataframe loaded")
+        song_playlist.to_csv(output_path + 'mpd.slice.' + str(start) + '-' + str(end - 1) + '.csv', index=False)
+        print("CSV written")
+        start += 1000
+        end += 1000
+
+
+
 def main():
-    file_path = "million_dataset/data/mpd.slice.0-999.json"
-    read_json(file_path)
+    file_path = "../../SpotifyChallenge/million_dataset/data/"
+    output_path = '../metadata/'
+    # read_json(file_path)
+    reconstruct_data(file_path, output_path)
 
 
 if __name__ == '__main__':
