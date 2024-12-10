@@ -32,17 +32,33 @@ def aggregate_data(folder_path):
     ad_csv.to_csv('aggregated_data.csv', index=False)
 
 
-def top_songs():
-    dataframe = pd.read_csv('aggregated_data.csv')
-    artist_count = dataframe['Track Name'].value_counts().head(10)
-    sns.barplot(x=artist_count.values, y=artist_count.index)
-    plt.title("The top 10 most popular songs in playlists are: ")
+def top_songs(dataframe):
+    '''
+    Plot the top 10 songs
+    :param dataframe: Dataframe containing the playlist metadata
+    '''
+    song_count = dataframe['Track Name'].value_counts().head(10)
+    sns.barplot(x=song_count.values, y=song_count.index)
+    plt.title('The top 10 most popular songs in playlists are: ')
     plt.show()
 
 
+def top_artists(dataframe):
+    '''
+    Plots the top 10 artists
+    :param dataframe: Dataframe containing the playlist metadata
+    '''
+    artist_count = dataframe['Artist Name'].value_counts().head(10)
+    sns.barplot(x=artist_count.values, y=artist_count.index)
+    plt.title('The top 10 most popular artist in the playlists are:')
+    plt.show()
+
 def main():
-    folder_path = '../metadata/'
-    data_stats()
+    # folder_path = '../metadata/'
+    playlist_df = pd.read_csv('aggregated_data.csv')
+
+    #top_songs(playlist_df)
+    top_artists(playlist_df)
 
     # aggregate_data(folder_path)
 
