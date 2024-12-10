@@ -7,6 +7,7 @@ import os
 
 import numpy
 import pandas as pd
+import seaborn as sns
 from matplotlib import pyplot as plt
 from sklearn.decomposition import PCA
 
@@ -31,9 +32,19 @@ def aggregate_data(folder_path):
     ad_csv.to_csv('aggregated_data.csv', index=False)
 
 
+def top_songs():
+    dataframe = pd.read_csv('aggregated_data.csv')
+    artist_count = dataframe['Track Name'].value_counts().head(10)
+    sns.barplot(x=artist_count.values, y=artist_count.index)
+    plt.title("The top 10 most popular songs in playlists are: ")
+    plt.show()
+
+
 def main():
     folder_path = '../metadata/'
-    aggregate_data(folder_path)
+    data_stats()
+
+    # aggregate_data(folder_path)
 
 
 if __name__ == '__main__':
