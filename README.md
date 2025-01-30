@@ -7,12 +7,15 @@ The project revovles around the use of the Spotify Million Playlist and developi
 1. ~~Setup Repo~~
 2. ~~Download the raw Datasets~~
 3. ~~Data Preprocessing~~
-4. EDA to get an idea of the pattern, distribution and overall analysis of the data
-5. Feature Engineering
+4. ~~EDA to get an idea of the pattern, distribution and overall analysis of the data~~
+5. ~~Feature Engineering~~
 6. Build Recommendation Models  
-   1. KNN
-   2. Cosine Similarity
+   1. Content Based Filtering (Cosine Similarity)
+   2. Collaborative Filtering (ALS Factorization)
    3. K Means Cluster
-   2. (LSTM/Transformers as possible solution?)
+   4. (LSTM/Transformers as possible solution?)
 7. Evaluate Model
 8. Model Tuning and Optimization
+
+## Procedure:
+
