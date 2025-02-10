@@ -1,5 +1,7 @@
+from scipy.sparse import csr_matrix
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
+from implicit.als import AlternatingLeastSquares
 import pandas as pd
 import numpy as np
 
@@ -71,17 +73,50 @@ def content_based_recommendation(data, track_name , artist_name , number_of_reco
     return data.iloc[song_indices][['Track Name', 'Artist Name']]
 
 
+def collaborative_recommendation(data, playlist_id):
 
 
-    # similarity_df = pd.DataFrame(cos_similarity, index=data['Track Name'], columns=data['Track Name'])
-    # print('Similarity df is ready')
-    # print(f'Similarity Score is:\n {similarity_df.head()}')
+    # Encoding since the track ids are urls
+    data['Playlist ID'] = data['Playlist ID'].astype('category').cat.codes
+    data['Track ID'] = data['Track Url'].astype('category').cat.codes
+
+    # Creating the sparse matrix
+    playlist_matrix = csr_matrix((np.ones(len(data)), (data["Playlist ID"], data["Track ID"])))
+
+    # Group by "Track Url", keeping the first track name and joining artist names
+    data_grouped = data.groupby("Track Url").agg({
+        "Track Name": "first",  # Take the first track name
+        "Artist Name": lambda x: ", ".join(set(x))  # Combine artist names
+    }).reset_index()
+
+    # Create the mapping
+    track_info_mapping = data_grouped.set_index("Track Url")[["Track Name", "Artist Name"]].to_dict(orient="index")
+
+    print(f"Matrix shape: {playlist_matrix.shape}")
+
+    # ALS Model
+    model = AlternatingLeastSquares(factors=50, iterations=20)
+    model.fit(playlist_matrix)
+
+    recommendations = model.recommend(playlist_id, playlist_matrix[playlist_id])
+    # print(recommendations)
+
+    track_ids = recommendations[0]
+
+    track_mapping = dict(enumerate(data["Track Url"].astype("category").cat.categories))
+    recommended_urls = [track_mapping[track_id] for track_id in track_ids]
+
+    recommended_tracks = [(track_info_mapping[url]['Track Name'], track_info_mapping[url]['Artist Name']) for url in recommended_urls if url in track_info_mapping]
+
+    print(f"Recommended Tracks: {recommended_tracks}")
+
 
 def main():
 
     df = pd.read_csv('../Data Analysis/mini_data.csv')
-    suggestions = content_based_recommendation(df, 'On the Floor', 'Jennifer Lopez' , 10)
-    print(f'Your recommended songs are: \n{suggestions}')
+    # suggestions = content_based_recommendation(df, 'On the Floor', 'Jennifer Lopez' , 10)
+    # print(f'Your recommended songs are: \n{suggestions}')
+    collaborative_recommendation(df, 15)
 
 
 if __name__ == '__main__':

@@ -5,3 +5,4 @@ Preprocessing/SpotifyCredentials.py
 Preprocessing/.cache
 metadata/
 Data Analysis/aggregated_data.csv
+Data Analysis/mini_data.csv
