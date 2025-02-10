@@ -1,21 +1,44 @@
-# Music-Recommender-System
-## Motivation
-Goal of this project is to use the different ML Concepts that I've learned over the years through work and studies in a real world application while simulatenously helping me refine these topics by getting an understanding with everyday challenges one can solve.
-## The Problem
-The project revovles around the use of the Spotify Million Playlist and developing a recommending system that can suggest accurate songs learning from information on the millions of playlist entries each containing multiple 100s of songs
-## TODO: 
-1. ~~Setup Repo~~
-2. ~~Download the raw Datasets~~
-3. ~~Data Preprocessing~~
-4. ~~EDA to get an idea of the pattern, distribution and overall analysis of the data~~
-5. ~~Feature Engineering~~
-6. Build Recommendation Models  
-   1. Content Based Filtering (Cosine Similarity)
-   2. Collaborative Filtering (ALS Factorization)
-   3. K Means Cluster
-   4. (LSTM/Transformers as possible solution?)
-7. Evaluate Model
-8. Model Tuning and Optimization
+#  Music Recommendation System
 
-## Procedure:
+Welcome to my **Music Recommendation System**, an exciting journey into **recommender system development** using real-world data from the **Spotify Million Playlist Dataset** (~33GB). This project explores **content-based filtering, collaborative filtering (ALS, k-NN), and hybrid approaches** to enhance recommendation accuracy. 
 
+## Features
+
+- **Content-Based Filtering**: Utilizes **TF-IDF and cosine similarity** to recommend tracks based on song features.
+- **Collaborative Filtering (ALS)**: Implements **Alternating Least Squares (ALS)** matrix factorization to recommend tracks based on user interactions.
+- **k-NN Collaborative Filtering**: Applies **k-nearest neighbors (k-NN) with cosine similarity** for playlist similarity.
+- **Hybrid Approach (WIP)**: Combining content-based and collaborative filtering to optimize recommendations.
+- **Efficient Data Processing**: Handles large-scale data efficiently with optimized transformations.
+
+##  Steps:
+
+### **1) Data Processing**
+- **Cleaning & Preprocessing**: Transforming raw playlist data into a structured format.
+- **Sparse Matrix Construction**: Representing user-playlist interactions for collaborative filtering.
+- **Feature Extraction**: Using **TF-IDF vectorization** for track metadata.
+
+### **2) Recommendation Models**
+#### ** Content-Based Filtering (TF-IDF + Cosine Similarity)**
+- Extracts song features (e.g., track name, artist, genre).
+- Uses **TF-IDF vectorization** to represent text-based features.
+- Measures similarity between tracks using **cosine similarity**.
+
+#### ** Collaborative Filtering (ALS & k-NN)**
+- **ALS Matrix Factorization** to predict missing interactions.
+- **k-NN (Cosine Similarity)** for playlist similarity-based recommendations.
+
+#### ** Hybrid Approach (WIP)**
+- Integrating both **content-based and collaborative filtering** for better accuracy.
+- Experimenting with weighted scores to balance different recommendation strategies.
+
+
+##  Next Steps
+-  **Improve Model Performance**: Fine-tune ALS hyperparameters & TF-IDF weights.
+-  **Implement Hybrid Model**: Combine collaborative & content-based filtering.
+-  **Expand Feature Engineering**: Incorporate audio features (e.g., tempo, key, energy levels).
+-  **Evaluation Metrics**: Implement precision@k, recall@k, and hit rate evaluation.
+
+##  Learnings & Challenges
+- Managing **large-scale datasets** efficiently.
+- Handling **sparse matrices** for collaborative filtering.
+- Experimenting with **different recommendation techniques** for better accuracy
