@@ -18,18 +18,18 @@ Welcome to my **Music Recommendation System**, an exciting journey into **recomm
 - Preprocesses song metadata for **TF-IDF vectorization**.  
 
 ### **2) Recommendation Models**
-#### ** Content-Based Filtering (TF-IDF + Cosine Similarity)**
+#### **Content-Based Filtering (TF-IDF + Cosine Similarity)**
 - Extracts song features (e.g., track name, artist, genre).
 - Uses **TF-IDF vectorization** to represent text-based features.
 - Measures similarity between tracks using **cosine similarity**.
 
-#### ** Collaborative Filtering (ALS & k-NN)**
+#### **Collaborative Filtering (ALS & k-NN)**
 - Encodes playlists and tracks into a **sparse matrix representation**.  
 - Trains an **ALS model** from the implicit library to predict song preferences.  
-- 
-#### ** Hybrid Approach (WIP)**
+
+#### **Hybrid Approach (WIP)**
 - **Merges content-based & collaborative filtering results** to provide balanced recommendations.  
-- Uses **weighted scoring** to combine similarity rankings.  
+- Uses **weighted scoring** to combine similarity rankings.
 
 ##  Learnings & Challenges
 - **Efficient processing of large-scale music data** (~33GB).  
