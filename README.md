@@ -6,16 +6,16 @@ Welcome to my **Music Recommendation System**, an exciting journey into **recomm
 
 - **Content-Based Filtering**: Utilizes **TF-IDF and cosine similarity** to recommend tracks based on song features.
 - **Collaborative Filtering (ALS)**: Implements **Alternating Least Squares (ALS)** matrix factorization to recommend tracks based on user interactions.
-- **k-NN Collaborative Filtering**: Applies **k-nearest neighbors (k-NN) with cosine similarity** for playlist similarity.
 - **Hybrid Approach (WIP)**: Combining content-based and collaborative filtering to optimize recommendations.
-- **Efficient Data Processing**: Handles large-scale data efficiently with optimized transformations.
+- **Efficient Data Processing**: Handles large-scale data efficiently with **pyspark** and optimized transformations.
 
-##  Steps:
+##  Implementation Details:
 
 ### **1) Data Processing**
 - **Cleaning & Preprocessing**: Transforming raw playlist data into a structured format.
 - **Sparse Matrix Construction**: Representing user-playlist interactions for collaborative filtering.
-- **Feature Extraction**: Using **TF-IDF vectorization** for track metadata.
+- Converts categorical **track IDs and playlist IDs** into numerical representations.  
+- Preprocesses song metadata for **TF-IDF vectorization**.  
 
 ### **2) Recommendation Models**
 #### ** Content-Based Filtering (TF-IDF + Cosine Similarity)**
@@ -24,21 +24,14 @@ Welcome to my **Music Recommendation System**, an exciting journey into **recomm
 - Measures similarity between tracks using **cosine similarity**.
 
 #### ** Collaborative Filtering (ALS & k-NN)**
-- **ALS Matrix Factorization** to predict missing interactions.
-- **k-NN (Cosine Similarity)** for playlist similarity-based recommendations.
-
+- Encodes playlists and tracks into a **sparse matrix representation**.  
+- Trains an **ALS model** from the implicit library to predict song preferences.  
+- 
 #### ** Hybrid Approach (WIP)**
-- Integrating both **content-based and collaborative filtering** for better accuracy.
-- Experimenting with weighted scores to balance different recommendation strategies.
-
-
-##  Next Steps
--  **Improve Model Performance**: Fine-tune ALS hyperparameters & TF-IDF weights.
--  **Implement Hybrid Model**: Combine collaborative & content-based filtering.
--  **Expand Feature Engineering**: Incorporate audio features (e.g., tempo, key, energy levels).
--  **Evaluation Metrics**: Implement precision@k, recall@k, and hit rate evaluation.
+- **Merges content-based & collaborative filtering results** to provide balanced recommendations.  
+- Uses **weighted scoring** to combine similarity rankings.  
 
 ##  Learnings & Challenges
-- Managing **large-scale datasets** efficiently.
-- Handling **sparse matrices** for collaborative filtering.
-- Experimenting with **different recommendation techniques** for better accuracy
+- **Efficient processing of large-scale music data** (~33GB).  
+- **Sparse matrix construction & optimization** for collaborative filtering.  
+- **Combining multiple recommendation techniques** to enhance accuracy.  
