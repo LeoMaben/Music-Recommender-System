@@ -1,6 +1,7 @@
 million_dataset/
 processed_files/
 .DS_Store
+Preprocessing/MetadataReader.py
 Preprocessing/SpotifyCredentials.py
 Preprocessing/.cache
 metadata/
